@@ -105,7 +105,8 @@ function initializeMap() {
 
   var mapOptions = {
     disableDefaultUI: true,
-	backgroundColor: "yellow"
+	backgroundColor: "yellow",
+	mapTypeControl: true
   };
 
   // This next line makes `map` a new Google Map JavaScript Object and attaches it to
