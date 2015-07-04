@@ -104,11 +104,13 @@ bio.display = function(){
 	$("#header").prepend(headerName);
 	$("#header").append(bioPic);
 	$("#header").append(welcomeMessage);
-	$("#topContacts").append(myLocation);
-	$("#topContacts").append(mobile);
-	$("#topContacts").append(email);
-	$("#topContacts").append(github);
-	$("#topContacts").append(twitter);
+	var contacts = ["#topContacts", "#footerContacts"];
+	var contactPoints = [myLocation, mobile, email, github, twitter];
+	for(i in contacts){
+		for(j in contactPoints){
+			$(contacts[i]).append(contactPoints[j]);
+		}
+	}
   }
   if(bio.skills.length > 0){
 	$("#header").append(HTMLskillsStart);	
