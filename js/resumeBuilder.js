@@ -12,7 +12,7 @@ var bio = {
 	"pictureURL": "images/my_picture.jpg",
 	"welcomeMessage": "Hi! Welcome to my resume website!",
 	"skills": ["Programming", "Soccer"]
-}
+};
 
 var work = {
 	"employment": [
@@ -69,7 +69,7 @@ var education = {
 		"url": "https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004"
 		}
 	]
-}
+};
 
 var projects = {
   "projectList":[
@@ -86,7 +86,7 @@ var projects = {
 	  "images": ["http://hydra-media.cursecdn.com/dota2.gamepedia.com/a/ac/Witch_Doctor.png"]
   }
   ]
-}
+};
 
 bio.display = function(){
   if(bio.name.length > 0){
