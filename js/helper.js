@@ -106,7 +106,12 @@ function initializeMap() {
   var mapOptions = {
     disableDefaultUI: true,
 	backgroundColor: "yellow",
-	mapTypeControl: true
+	mapTypeControl: true,
+	zoomControl: true,
+	zoomControlOptions:{
+		style: google.maps.ZoomControlStyle.LARGE,
+		position: google.maps.ControlPosition.BOTTOM_RIGHT
+	}
   };
 
   // This next line makes `map` a new Google Map JavaScript Object and attaches it to
