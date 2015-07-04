@@ -29,15 +29,16 @@ h1 {
 h2 {
   font-weight: bold;
   font-size: 24px;
-  color: #999999;
+  color: #333333;
   line-height: 29px;
   padding: 10px;
+  text-decoration: underline;
 }
 
 h3 {
   font-style: italic;
   font-size: 20px;
-  color: #000000;
+  color: #999999;
   line-height: 22px;
 }
 
@@ -127,6 +128,10 @@ a {
 /* TODO: Replace with image later */
 #header {
   background-color: #484848;
+}
+
+#color-control {
+  background-color: #ecd5ad;
 }
 
 .flex-box {
