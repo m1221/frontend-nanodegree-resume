@@ -1,3 +1,13 @@
+var locationObj = {
+	"houston_TX": {
+			"name": "Houston, TX",
+			"description": "An ever-expanding city built on forested land, swamp, and prairie, the fourth most populous city in the US is a sprawl of different communities joined by mighty highways. We have food, we have music, we have shopping. It's an exciting time to be in Houston."
+		},
+	"springfield_MO": {
+			"name": "Springfield, MO",
+			"description": "Springfield is a fictional town from The Simpsons. In the The Simpsons' wikipedia page, Springfield is said to be located somewhere in the midwest."
+		}
+};
 
 var bio = {
 	"name": "Mario Lopez",
@@ -5,7 +15,7 @@ var bio = {
 	"contacts": {
 		"email": "123fakeemail@fake.com",
 		"mobile": "713-555-1111",
-		"location": "Houston, TX",
+		"location": locationObj.houston_TX,
 		"github": "m1221",
 		"twitter": "n/a"
 	},
@@ -21,7 +31,7 @@ var work = {
 			"startDate": "2010",
 			"position": "unemployed",
 			"dates": "2010-2011",
-			"location": "Houston, TX",
+			"location": locationObj.houston_TX,
 			"description": "Played lots of video games."
 		},
 		{
@@ -29,7 +39,7 @@ var work = {
 			"startDate": "2010",
 			"position": "unemployed",
 			"dates": "2011-2012",
-			"location": "Houston, TX",
+			"location": locationObj.houston_TX,
 			"description": "Played more video games."
 		},
 		{
@@ -37,7 +47,7 @@ var work = {
 			"startDate": "2010",
 			"position": "unemployed",
 			"dates": "2013-2015",
-			"location": "Houston, TX",
+			"location": locationObj.houston_TX,
 			"description": "Played even more video games."
 		}
 	
@@ -51,7 +61,7 @@ var education = {
 		"endDate": 2010,
 		"degree": "B.S.",
 		"majors": ["Clownology"],
-		"location": "Springfield, MO",
+		"location": locationObj.springfield_MO,
 		"url": "https://www.youtube.com/watch?v=kXvVNs4Q2sM"
 		}
 		],
@@ -98,7 +108,7 @@ bio.display = function(){
 	var mobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
 	var github = HTMLgithub.replace("%data%", bio.contacts.github);
 	var twitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-	var myLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+	var myLocation = HTMLlocation.replace("%data%", bio.contacts.location.name);
 	
 	$("#header").prepend(headerRole);
 	$("#header").prepend(headerName);
@@ -136,7 +146,7 @@ work.display = function(){
 		formattedEmployer = HTMLworkEmployer.replace("%data%", work.employment[i]["employer"]);
 		formattedTitle = HTMLworkTitle.replace("%data%", work.employment[i]["position"]);
 		formattedDates = HTMLworkDates.replace("%data%", work.employment[i]["dates"]);
-		formattedLocation = HTMLworkLocation.replace("%data%", work.employment[i]["location"]);
+		formattedLocation = HTMLworkLocation.replace("%data%", work.employment[i]["location"]["name"]);
 		formattedDescription = HTMLworkDescription.replace("%data%", work.employment[i]["description"]);
 		
 		
@@ -189,7 +199,7 @@ education.display = function(){
 			schoolName = HTMLschoolName.replace("%data%", education.schools[i].name);
 			schoolDegree = HTMLschoolDegree.replace("%data%", education.schools[i].degree);
 			schoolDates = HTMLschoolDates.replace("%data%", education.schools[i].endDate.toString());
-			schoolLocation = HTMLschoolLocation.replace("%data%", education.schools[i].location);
+			schoolLocation = HTMLschoolLocation.replace("%data%", education.schools[i].location.name);
 			schoolMajor = HTMLschoolMajor.replace("%data%", education.schools[i].majors.join(", "));
 			schoolName = schoolName.replace("#", education.schools[i].url);
 		
