@@ -102,6 +102,8 @@ Start here! initializeMap() is called when page is loaded.
 function initializeMap() {
 
   var locations;
+  var locationDescriptions;
+  var descrip;
 
   var mapOptions = {
     disableDefaultUI: true,
@@ -109,7 +111,7 @@ function initializeMap() {
 	mapTypeControl: true,
 	zoomControl: true,
 	zoomControlOptions:{
-		style: google.maps.ZoomControlStyle.LARGE,
+		style: google.maps.ZoomControlStyle.DEFAULT,
 		position: google.maps.ControlPosition.BOTTOM_RIGHT
 	}
   };
@@ -126,23 +128,27 @@ function initializeMap() {
 
     // initializes an empty array
     var locations = [];
+	var locationDescriptions = [];
 
     // adds the single location property from bio to the locations array
     locations.push(bio.contacts.location.name);
+	locationDescriptions.push(bio.contacts.description);
 
     // iterates through school locations and appends each location to
     // the locations array
     for (var school in education.schools) {
       locations.push(education.schools[school].location.name);
+	  locationDescriptions.push(education.schools[school].location.description);
     }
 
     // iterates through work locations and appends each location to
     // the locations array
     for (var job in work.jobs) {
       locations.push(work.jobs[job].location.name);
+	  locationDescriptions.push(work.jobs[job].location.description);
     }
 
-    return locations;
+    return [locations, locationDescriptions];
   }
 
   /*
@@ -164,24 +170,26 @@ function initializeMap() {
       position: placeData.geometry.location,
       title: name
     });
-
-    // infoWindows are the little helper windows that open when you click
+	
+	// infoWindows are the little helper windows that open when you click
     // or hover over a pin on a map. They usually contain more information
     // about a location.
     var infoWindow = new google.maps.InfoWindow({
-      content: name
+      content: "<div id='map-content'><b>"+ name + "</b><br>"+ descrip + "</div>"
     });
-
-    // hmmmm, I wonder what this is about...
+	
+	// hmmmm, I wonder what this is about...
     google.maps.event.addListener(marker, 'click', function() {
-      // your code goes here!
+      infoWindow.open(map, marker);
     });
-
+	
     // this is where the pin actually gets added to the map.
     // bounds.extend() takes in a map location object
     bounds.extend(new google.maps.LatLng(lat, lon));
+	
     // fit the map to the new marker
     map.fitBounds(bounds);
+	
     // center the map
     map.setCenter(bounds.getCenter());
   }
@@ -213,6 +221,9 @@ function initializeMap() {
       var request = {
         query: locations[place]
       };
+	  
+	  //description of place
+	  descrip = locationDescriptions[place];
 
       // Actually searches the Google Maps API for location data and runs the callback
       // function with the search results after each search.
@@ -224,7 +235,9 @@ function initializeMap() {
   window.mapBounds = new google.maps.LatLngBounds();
 
   // locations is an array of location strings returned from locationFinder()
-  locations = locationFinder();
+  locations = locationFinder()[0];
+  // locationDescriptions is an array of location string return from locationFinder()
+  locationDescriptions = locationFinder()[1];
 
   // pinPoster(locations) creates pins on the map for each location in
   // the locations array

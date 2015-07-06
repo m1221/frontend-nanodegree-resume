@@ -134,6 +134,10 @@ a {
   background-color: #ecd5ad;
 }
 
+#map-content {
+  max-width: 300px;
+}
+
 .flex-box {
   display: -webkit-flex;
   display: flex;
