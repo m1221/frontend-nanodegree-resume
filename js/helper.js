@@ -129,6 +129,7 @@ function initializeMap() {
     // initializes an empty array
     var locations = [];
 	var locationDescriptions = [];
+	var uniqueLocations, uniqueLocationDescriptions;
 
     // adds the single location property from bio to the locations array
     locations.push(bio.contacts.location.name);
@@ -143,12 +144,15 @@ function initializeMap() {
 
     // iterates through work locations and appends each location to
     // the locations array
-    for (var job in work.jobs) {
-      locations.push(work.jobs[job].location.name);
-	  locationDescriptions.push(work.jobs[job].location.description);
+    for (var job in work.employment) {
+      locations.push(work.employment[job].location.name);
+	  locationDescriptions.push(work.employment[job].location.description);
     }
-
-    return [locations, locationDescriptions];
+	
+	uniqueLocations = removeDuplicates(locations);
+	uniqueLocationDescriptions = removeDuplicates(locationDescriptions).reverse();
+	
+    return [uniqueLocations, uniqueLocationDescriptions];
   }
 
   /*
@@ -157,6 +161,7 @@ function initializeMap() {
   about a single location.
   */
   function createMapMarker(placeData) {
+	console.log(locations);
 	console.log("createMapMarker");
     // The next lines save location data from the search result object to local variables
     var lat = placeData.geometry.location.lat();  // latitude from the place service
@@ -175,7 +180,7 @@ function initializeMap() {
     // or hover over a pin on a map. They usually contain more information
     // about a location.
     var infoWindow = new google.maps.InfoWindow({
-      content: "<div id='map-content'><b>"+ name + "</b><br>"+ locationDescriptions.reverse().pop() + "</div>"
+      content: "<div id='map-content'><b>"+ name + "</b><br>"+ locationDescriptions.pop() + "</div>"
     });
 	
 	// hmmmm, I wonder what this is about...
@@ -255,3 +260,23 @@ window.addEventListener('resize', function(e) {
   // Make sure the map bounds get updated on page resize
   map.fitBounds(mapBounds);
 });
+
+
+//function for eliminating duplicates in array
+// credit to georg on stackoverflow
+
+function removeDuplicates(arr){
+	var item;
+	var seen = {};
+	var out = [];
+	var len = arr.length;
+	var j = 0;
+	for(var i = 0; i < len; i++) {
+		item = arr[i];
+		if(seen[item] !==1){
+			seen[item] = 1;
+			out[j++] = item;
+		}
+	}
+	return out;
+}
