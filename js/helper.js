@@ -103,7 +103,6 @@ function initializeMap() {
 
   var locations;
   var locationDescriptions;
-  var descrip;
 
   var mapOptions = {
     disableDefaultUI: true,
@@ -133,7 +132,7 @@ function initializeMap() {
 
     // adds the single location property from bio to the locations array
     locations.push(bio.contacts.location.name);
-	locationDescriptions.push(bio.contacts.description);
+	locationDescriptions.push(bio.contacts.location.description);
 
     // iterates through school locations and appends each location to
     // the locations array
@@ -158,7 +157,7 @@ function initializeMap() {
   about a single location.
   */
   function createMapMarker(placeData) {
-
+	console.log("createMapMarker");
     // The next lines save location data from the search result object to local variables
     var lat = placeData.geometry.location.lat();  // latitude from the place service
     var lon = placeData.geometry.location.lng();  // longitude from the place service
@@ -176,7 +175,7 @@ function initializeMap() {
     // or hover over a pin on a map. They usually contain more information
     // about a location.
     var infoWindow = new google.maps.InfoWindow({
-      content: "<div id='map-content'><b>"+ name + "</b><br>"+ descrip + "</div>"
+      content: "<div id='map-content'><b>"+ name + "</b><br>"+ locationDescriptions.reverse().pop() + "</div>"
     });
 	
 	// hmmmm, I wonder what this is about...
@@ -214,19 +213,15 @@ function initializeMap() {
     // creates a Google place search service object. PlacesService does the work of
     // actually searching for location data.
     var service = new google.maps.places.PlacesService(map);
-
+	
     // Iterates through the array of locations, creates a search object for each location
 	var len = locations.length;
     for(var place = 0; place < len; place++) {
-
       // the search request object
       var request = {
         query: locations[place]
       };
 	  
-	  //description of place
-	  descrip = locationDescriptions[place];
-
       // Actually searches the Google Maps API for location data and runs the callback
       // function with the search results after each search.
       service.textSearch(request, callback);
