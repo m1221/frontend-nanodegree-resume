@@ -216,7 +216,8 @@ function initializeMap() {
     var service = new google.maps.places.PlacesService(map);
 
     // Iterates through the array of locations, creates a search object for each location
-    for (var place in locations) {
+	var len = locations.length;
+    for(var place = 0; place < len; place++) {
 
       // the search request object
       var request = {
