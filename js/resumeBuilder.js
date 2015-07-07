@@ -139,7 +139,7 @@ bio.display = function(){
 		$("#skillsH3").append(formattedSkill);
 	}
   }
-}
+};
 
 work.display = function(){
   if(work.employment.length > 0){
@@ -168,7 +168,7 @@ work.display = function(){
 		$(".work-entry:last").append(formattedDescription);
 	}
   }
-}
+};
 
 projects.display = function(){
 	// initialize variables to be used in for-loop
@@ -199,7 +199,7 @@ projects.display = function(){
 			$(".project-entry:last").append(image);
 		}
 	}
-}
+};
 
 //education.display has two functions inside it: displaySchools() and displayOnlineSchools
 education.display = function(){
@@ -260,7 +260,7 @@ education.display = function(){
 	
 	displaySchools();
 	displayOnlineSchools();
-}
+};
 
 // define a function for the internationalizeButton in js/helper.js
 function inName(){
