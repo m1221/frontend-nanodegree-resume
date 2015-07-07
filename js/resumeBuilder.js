@@ -1,12 +1,16 @@
 var locationObj = {
 	"houston_TX": {
-			"name": "Houston, TX",
-			"description": "An ever-expanding city built on forested land, swamp, and prairie, the fourth most populous city in the US is a sprawl of different communities joined by mighty highways. We have food, we have music, we have shopping. It's an exciting time to be in Houston."
+		"name": "Houston, TX",
+		"description": "An ever-expanding city built on forested land, swamp, and prairie, the fourth most populous city in the US is a sprawl of different communities joined by mighty highways. We have food, we have music, we have shopping. It's an exciting time to be in Houston."
 		},
 	"springfield_MO": {
-			"name": "Springfield, MO",
-			"description": "Springfield is a fictional town from The Simpsons. In the The Simpsons' wikipedia page, Springfield is said to be located somewhere in the midwest."
-		}
+		"name": "Springfield, MO",
+		"description": "Springfield is a fictional town from The Simpsons. In the The Simpsons' wikipedia page, Springfield is said to be located somewhere in the midwest."
+		},
+	"newOrleans_LA": {
+		"name": "New Orleans, LA",
+		"description": "Jazz and gambling."
+	}
 };
 
 var bio = {
@@ -31,7 +35,7 @@ var work = {
 			"startDate": "2010",
 			"position": "unemployed",
 			"dates": "2010-2011",
-			"location": locationObj.houston_TX,
+			"location": locationObj.newOrleans_LA,
 			"description": "Played lots of video games."
 		},
 		{
