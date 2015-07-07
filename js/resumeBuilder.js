@@ -1,3 +1,4 @@
+// initialize 5 objects: locationObj, bio, work, education, and projects
 var locationObj = {
 	"houston_TX": {
 		"name": "Houston, TX",
@@ -25,7 +26,7 @@ var bio = {
 	},
 	"pictureURL": "images/my_picture.jpg",
 	"welcomeMessage": "Hi! Welcome to my resume website!",
-	"skills": ["Programming", "Soccer"]
+	"skills": ["Programming", "Soccer", "Video Games"]
 };
 
 var work = {
@@ -102,8 +103,10 @@ var projects = {
   ]
 };
 
+// define methods for objects: bio.display(), work.display(), projects.display(), education.display()
 bio.display = function(){
   if(bio.name.length > 0){
+	// retrieve data from bio object
 	var headerName = HTMLheaderName.replace("%data%", bio.name);
 	var headerRole = HTMLheaderRole.replace("%data%", bio.role);
 	var bioPic = HTMLbioPic.replace("%data%", bio.pictureURL);
@@ -114,6 +117,7 @@ bio.display = function(){
 	var twitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
 	var myLocation = HTMLlocation.replace("%data%", bio.contacts.location.name);
 	
+	// add retrieved data to html document
 	$("#header").prepend(headerRole);
 	$("#header").prepend(headerName);
 	$("#header").append(bioPic);
@@ -126,6 +130,7 @@ bio.display = function(){
 		}
 	}
   }
+  
   if(bio.skills.length > 0){
 	$("#header").append(HTMLskillsStart);	
 	var formattedSkill = "";
@@ -138,6 +143,7 @@ bio.display = function(){
 
 work.display = function(){
   if(work.employment.length > 0){
+	// initialize variables to be used in for-loop
 	var formattedEmployer = "";
 	var formattedTitle = "";
 	var formattedDates = "";
@@ -145,15 +151,17 @@ work.display = function(){
 	var formattedDescription = "";
 	
 	for(i in work.employment){
+		// add <"div class='work-entry'> for each place of employment
 		$("#workExperience").append(HTMLworkStart);
 		
+		// retrieve data from work object
 		formattedEmployer = HTMLworkEmployer.replace("%data%", work.employment[i]["employer"]);
 		formattedTitle = HTMLworkTitle.replace("%data%", work.employment[i]["position"]);
 		formattedDates = HTMLworkDates.replace("%data%", work.employment[i]["dates"]);
 		formattedLocation = HTMLworkLocation.replace("%data%", work.employment[i]["location"]["name"]);
 		formattedDescription = HTMLworkDescription.replace("%data%", work.employment[i]["description"]);
 		
-		
+		// add data to html document
 		$(".work-entry:last").append(formattedEmployer + formattedTitle);
 		$(".work-entry:last").append(formattedDates);
 		$(".work-entry:last").append(formattedLocation);
@@ -163,33 +171,40 @@ work.display = function(){
 }
 
 projects.display = function(){
+	// initialize variables to be used in for-loop
 	var projectTitle = "";
 	var projectDates = "";
 	var projectDescription = "";
 	var images = "";
 	
 	for(i in projects.projectList){
+		// add <"div class='project-entry'> for each project
 		$("#projects").append(HTMLprojectStart);
 		
+		// retrieve data from project object
 		projectTitle = HTMLprojectTitle.replace("%data%", projects.projectList[i].title);
 		projectDates = HTMLprojectDates.replace("%data%", projects.projectList[i].dates);
 		projectDescription = HTMLprojectDescription.replace("%data%", projects.projectList[i].description);
 		
+		// add data to html document
 		$(".project-entry:last").append(projectTitle);
 		$(".project-entry:last").append(projectDates);
 		$(".project-entry:last").append(projectDescription);
 		
+		// for project images retrieves data and adds them to html document
+		// images have their own for-loop; this allows for multiple images for a single project
 		for(b in projects.projectList[i].images){
 			image = HTMLprojectImage.replace("%data%", projects.projectList[i].images[b]);
 			
 			$(".project-entry:last").append(image);
 		}
-		// there must be no space in between "entry", ":", "last"
 	}
 }
 
+//education.display has two functions inside it: displaySchools() and displayOnlineSchools
 education.display = function(){
 	function displaySchools(){
+		// initialize variables to be used in for-loop
 		var schoolName = "";
 		var schoolDegree = "";
 		var schoolDates = "";
@@ -198,15 +213,18 @@ education.display = function(){
 		var schoolURL = "";
 	
 		for(i in education.schools){
+			// add <"div class='education-entry'> for each educational institution
 			$("#education").append(HTMLschoolStart);
-		
+			
+			// retrieve data from education object
 			schoolName = HTMLschoolName.replace("%data%", education.schools[i].name);
 			schoolDegree = HTMLschoolDegree.replace("%data%", education.schools[i].degree);
 			schoolDates = HTMLschoolDates.replace("%data%", education.schools[i].endDate.toString());
 			schoolLocation = HTMLschoolLocation.replace("%data%", education.schools[i].location.name);
 			schoolMajor = HTMLschoolMajor.replace("%data%", education.schools[i].majors.join(", "));
 			schoolName = schoolName.replace("#", education.schools[i].url);
-		
+			
+			// add data to html document
 			$(".education-entry:last").append(schoolName + schoolDegree);
 			$(".education-entry:last").append(schoolDates);
 			$(".education-entry:last").append(schoolLocation);
@@ -215,21 +233,26 @@ education.display = function(){
 	}
 	
 	function displayOnlineSchools(){
+		// add header for online classes
 		$("#education").append(HTMLonlineClasses);
 		
+		// initialize variables to be used in for-loop
 		var title = "";
 		var school = "";
 		var date = "";
 		var url = "";
 		
 		for(i in education.onlineCourses){
+			// add <"div class='education-entry'> for each educational institution
 			$("#education").append(HTMLschoolStart);
 			
+			// retrieve data from education object
 			title = HTMLonlineTitle.replace("%data%", education.onlineCourses[i].title);
 			school = HTMLonlineSchool.replace("%data%", education.onlineCourses[i].school);
 			date = HTMLonlineDates.replace("%data%", education.onlineCourses[i].date.toString());
 			titleURL = title.replace("#", education.onlineCourses[i].url);
 			
+			// add data to html document
 			$(".education-entry:last").append(titleURL + school);
 			$(".education-entry:last").append(date);
 		}
@@ -239,10 +262,10 @@ education.display = function(){
 	displayOnlineSchools();
 }
 
+// define a function for the internationalizeButton in js/helper.js
 function inName(){
 	return bio.name.split(" ")[0] + " " + bio.name.split(" ")[1].toUpperCase();
 }
-
 
 //load the website
 bio.display();

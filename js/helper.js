@@ -4,9 +4,9 @@ This file contains all of the code running in the background that makes resumeBu
 
 Don't worry, you'll learn what's going on in this file throughout the course. You won't need to make any changes to it until you start experimenting with inserting a Google Map in Problem Set 3.
 
-Cameron Pittman - udacity Course Developer
+Created by: Cameron Pittman - Udacity Course Developer
+Edited by: Mario P - Udacity Student
 */
-
 
 /*
 These are HTML strings. As part of the course, you'll be using JavaScript functions
@@ -58,8 +58,7 @@ var HTMLonlineDates = '<div class="date-text">%data%</div><br>';
 var internationalizeButton = '<button>Internationalize</button>';
 var googleMap = '<div id="map"></div>';
 
-
-/*
+/* internationalizeButton
 The International Name challenge in Lesson 2 where you'll create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
 */
 $(document).ready(function() {
@@ -95,12 +94,12 @@ https://developers.google.com/maps/documentation/javascript/reference
 */
 var map;    // declares a global map variable
 
-
 /*
 Start here! initializeMap() is called when page is loaded.
 */
 function initializeMap() {
 
+  //initialize two variables that will serve as arrays that hold location data as strings
   var locations;
   var locationDescriptions;
 
@@ -126,29 +125,33 @@ function initializeMap() {
   */
   function locationFinder() {
 
-    // initializes an empty array
+    // initializes empty arrays
     var locations = [];
 	var locationDescriptions = [];
+	// initializes variables that will be returned from this function
 	var uniqueLocations, uniqueLocationDescriptions;
 
     // adds the single location property from bio to the locations array
     locations.push(bio.contacts.location.name);
+	// adds the location description to the locationsDescription array
 	locationDescriptions.push(bio.contacts.location.description);
 
     // iterates through school locations and appends each location to
-    // the locations array
+    // the locations array and location descriptions to locationDescriptions array
     for (var school in education.schools) {
       locations.push(education.schools[school].location.name);
 	  locationDescriptions.push(education.schools[school].location.description);
     }
 
     // iterates through work locations and appends each location to
-    // the locations array
+    // the locations array and location descriptions to the locationsDescriptions array
     for (var job in work.employment) {
       locations.push(work.employment[job].location.name);
 	  locationDescriptions.push(work.employment[job].location.description);
     }
 	
+	// use function removeDupiclates to remove duplicate entries from array
+	// an array with duplicate entries produces mistakes in createMapMarker-infoWindows
 	uniqueLocations = removeDuplicates(locations);
 	uniqueLocationDescriptions = removeDuplicates(locationDescriptions).reverse();
 	
@@ -244,7 +247,6 @@ function initializeMap() {
   // pinPoster(locations) creates pins on the map for each location in
   // the locations array
   pinPoster(locations);
-
 }
 
 /*
