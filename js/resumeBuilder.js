@@ -124,7 +124,7 @@ bio.display = function(){
 	$("#header").append(welcomeMessage);
 	var contacts = ["#topContacts", "#footerContacts"];
 	var contactPoints = [myLocation, mobile, email, github, twitter];
-	for(i in contacts){
+	for(var i in contacts){
 		for(j in contactPoints){
 			$(contacts[i]).append(contactPoints[j]);
 		}
@@ -134,7 +134,7 @@ bio.display = function(){
   if(bio.skills.length > 0){
 	$("#header").append(HTMLskillsStart);	
 	var formattedSkill = "";
-	for(i in bio.skills){
+	for(var i in bio.skills){
 		formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
 		$("#skillsH3").append(formattedSkill);
 	}
@@ -150,7 +150,7 @@ work.display = function(){
 	var formattedLocation = "";
 	var formattedDescription = "";
 	
-	for(i in work.employment){
+	for(var i in work.employment){
 		// add <"div class='work-entry'> for each place of employment
 		$("#workExperience").append(HTMLworkStart);
 		
@@ -177,7 +177,7 @@ projects.display = function(){
 	var projectDescription = "";
 	var images = "";
 	
-	for(i in projects.projectList){
+	for(var i in projects.projectList){
 		// add <"div class='project-entry'> for each project
 		$("#projects").append(HTMLprojectStart);
 		
@@ -212,7 +212,7 @@ education.display = function(){
 		var schoolMajor = "";
 		var schoolURL = "";
 	
-		for(i in education.schools){
+		for(var i in education.schools){
 			// add <"div class='education-entry'> for each educational institution
 			$("#education").append(HTMLschoolStart);
 			
@@ -242,7 +242,7 @@ education.display = function(){
 		var date = "";
 		var url = "";
 		
-		for(i in education.onlineCourses){
+		for(var i in education.onlineCourses){
 			// add <"div class='education-entry'> for each educational institution
 			$("#education").append(HTMLschoolStart);
 			
