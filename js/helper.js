@@ -110,8 +110,6 @@ function initializeMap() {
 	zoomControl: true,
 	zoomControlOptions:{
 		style: google.maps.ZoomControlStyle.DEFAULT,
-		//position: google.maps.ControlPosition.BOTTOM_RIGHT default is 
-		//top left, bottom right doesn't work well
 	}
   };
 
