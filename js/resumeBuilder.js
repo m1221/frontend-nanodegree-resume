@@ -24,7 +24,7 @@ var bio = {
 		"github": "m1221",
 		"twitter": "n/a"
 	},
-	"pictureURL": "images/my_picture.jpg",
+	"pictureURL": "images/fry.jpg",
 	"welcomeMessage": "Hi! Welcome to my resume website!",
 	"skills": ["Programming", "Soccer", "Video Games"]
 };
